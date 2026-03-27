@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fenie</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="logo-icon">
+        <img src="../icons/icon48.png" width="36" height="36" alt="Fenie" style="border-radius:8px;">
+      </div>
+      <div class="header-text">
+        <h1>Fenie</h1>
+        <span class="header-subtitle">Your Financial Genie</span>
+      </div>
+    </div>
+    <button class="btn-icon" id="settingsBtn" title="Settings">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Tab Navigation ── -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" id="tabAnalyze">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M12 20V10M18 20V4M6 20v-4"/>
+      </svg>
+      Analyze
+    </button>
+    <button class="tab-btn" id="tabChats">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      Chats
+    </button>
+  </nav>
+
+  <!-- ════════════════════════════════════
+       ANALYZE PANEL
+  ════════════════════════════════════ -->
+  <div id="analyzePanel">
+
+    <!-- Ticker Detection Bar -->
+    <div class="ticker-bar" id="tickerBar">
+      <div class="ticker-info">
+        <span class="ticker-label">Detected</span>
+        <span class="ticker-symbol" id="tickerSymbol">—</span>
+        <span class="ticker-price" id="tickerPrice">—</span>
+      </div>
+    </div>
+
+    <!-- Input Panel -->
+    <div class="input-panel">
+      <div class="input-grid">
+        <div class="input-group">
+          <label for="portfolio">Portfolio ($)</label>
+          <input type="number" id="portfolio" placeholder="10000" min="1" step="100" value="10000">
+        </div>
+        <div class="input-group">
+          <label for="riskPercent">Risk (%)</label>
+          <input type="number" id="riskPercent" placeholder="2" min="0.1" max="100" step="0.5" value="2">
+        </div>
+        <div class="input-group" id="leverageGroup">
+          <label for="leverage" id="leverageLabel">Leverage</label>
+          <input type="number" id="leverage" placeholder="1" min="1" max="500" step="1" value="1">
+        </div>
+        <div class="input-group input-group-full">
+          <label>Type</label>
+          <div class="trade-type-pills">
+            <button class="pill-btn active" data-type="spot">Spot</button>
+            <button class="pill-btn" data-type="futures">Futures</button>
+            <button class="pill-btn" data-type="forex">Forex</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-analyze" id="analyzeBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffd700" stroke="#ffd700" stroke-width="1" stroke-linecap="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+        <span id="analyzeBtnText">Analyze</span>
+      </button>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar hidden" id="statusBar">
+      <div class="status-spinner"></div>
+      <span class="status-text" id="statusText">Summoning Fenie...</span>
+    </div>
+
+    <!-- Results Container -->
+    <div class="results-container hidden" id="resultsContainer">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">
+        <svg viewBox="0 0 72 72" width="68" height="68">
+          <ellipse cx="36" cy="56" rx="14" ry="4" fill="#ffd700" opacity="0.2"/>
+          <path d="M26 56 Q22 48 28 44 L44 44 Q50 48 46 56" fill="#ffd700" opacity="0.25"/>
+          <path d="M30 44 L31 40 L41 40 L42 44" fill="#ffd700" opacity="0.2"/>
+          <path d="M42 42 Q48 36 52 28" stroke="#ffd700" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+          <path d="M52 28 L48 20 L44 24 L38 14 L32 18 L28 10" stroke="#00d4aa" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+          <circle cx="54" cy="22" r="2" fill="#fff" opacity="0.12"/>
+          <circle cx="26" cy="12" r="1.5" fill="#00d4aa" opacity="0.12"/>
+          <circle cx="56" cy="30" r="1" fill="#ffd700" opacity="0.12"/>
+        </svg>
+      </div>
+      <p class="empty-title">Open a TradingView chart</p>
+      <p class="empty-subtitle">Fenie will detect your ticker and deliver a complete multi-timeframe trading plan</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-state hidden" id="errorState">
+      <div class="error-icon">!</div>
+      <p class="error-message" id="errorMessage"></p>
+      <button class="btn-retry" id="retryBtn">Try Again</button>
+    </div>
+
+  </div><!-- /analyzePanel -->
+
+
+  <!-- ════════════════════════════════════
+       CHATS PANEL
+  ════════════════════════════════════ -->
+  <div id="chatsPanel" class="hidden">
+
+    <div class="chats-header">
+      <span class="chats-title">Saved Analyses</span>
+      <button class="btn-clear-chats" id="clearChatsBtn" title="Clear all history">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+        </svg>
+        Clear All
+      </button>
+    </div>
+
+    <!-- Chat list -->
+    <div id="chatList" class="chat-list"></div>
+
+    <!-- Empty chats state -->
+    <div class="chats-empty hidden" id="chatsEmpty">
+      <svg viewBox="0 0 56 56" width="52" height="52" style="opacity:0.35;margin-bottom:14px">
+        <path d="M42 30a2 2 0 0 1-2 2H14l-8 8V10a2 2 0 0 1 2-2h32a2 2 0 0 1 2 2z" fill="none" stroke="#ffd700" stroke-width="1.5"/>
+      </svg>
+      <p class="empty-title">No saved analyses yet</p>
+      <p class="empty-subtitle">Run an analysis and it will appear here automatically</p>
+    </div>
+
+    <!-- Expanded chat view -->
+    <div id="chatDetail" class="chat-detail hidden"></div>
+
+  </div><!-- /chatsPanel -->
+
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

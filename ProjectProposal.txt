@@ -1,0 +1,34 @@
+Project Proposal: TradeGenie
+Project Title: TradeGenie
+
+Project Domain: Financial Technology (FinTech) / Artificial Intelligence
+
+Implementation Language: JavaScript (Chrome Extension Manifest V3)
+
+Abstract
+TradeGenie is an advanced AI-powered trading assistant designed as a Chrome Extension for TradingView. The project solves the limitation of manual technical analysis and platform constraints (such as the 2-indicator limit on free accounts) by automating a multi-step "Capture-and-Analyze" workflow. TradeGenie identifies the active financial instrument, cycles through 4H and 1D timeframes, and utilizes automated indicator-swapping logic to capture four high-fidelity screenshots containing critical data (200 SMA, RSI, Price Action, and Volume). These visuals, combined with real-time web-grounded news sentiment, are fed into a multimodal LLM. The system generates a comprehensive, professional-grade trading plan that includes precise entry/exit levels, a volatility-adjusted DCA strategy, and a structured hedge setup—all formatted into a native side-panel interface for immediate execution.
+
+List of High-Level Features
+Dynamic Ticker & Context Detection: Automatically scrapes the active symbol and detects asset class (Crypto, Forex, or Gold) to adjust calculation logic.
+
+Automated Indicator-Bypass Engine: Orchestrates a "Swap-and-Capture" cycle to provide the LLM with 4 indicators (e.g., 200 SMA + RSI + 2 others) despite TradingView's free-tier limits.
+
+Multimodal Vision Analysis (4H & 1D): Processes four distinct screenshots in a single API request to ensure trend alignment across intraday and daily scales.
+
+Real-Time Sentiment & News Grounding: Utilizes search-integrated AI to summarize relevant news impact (Bullish/Bearish/Neutral) for the specific symbol.
+
+Volatility-Adjusted DCA Strategy: Generates specific price levels to add to losing positions (based on asset volatility) and winning positions (to scale into profit).
+
+Position Sizing Calculator: Converts user-input portfolio size, risk percentage, and leverage into both dollar amounts and asset quantities (e.g., "10 ETH / $25,000").
+
+Smart Leverage & Asset Logic: Programmatically disables leverage for Spot trades and calculates specialized Lot Sizes for Forex and Gold (XAUUSD).
+
+Automated Alternative Hedge Strategy: Provides a structured "Plan B" trade in the opposite direction with its own DCA, SL, and TP levels in case of a primary setup failure.
+
+Professional Sidebar UI: Renders the complex LLM output into a perfectly formatted table and chart structure using Markdown for high scannability.
+
+Environment & API Management: A dedicated settings dashboard for the user to securely input their Gemini API Key and select from the latest models (e.g., Gemini 3 Flash).
+
+Technical Health Check: Analyzes price action relative to the 200 SMA and RSI overbought/oversold conditions to validate "vibe" with hard data.
+
+Fast-Execution Workflow: Designed to move from initial click to a complete, structured trading plan in under 10 seconds.
