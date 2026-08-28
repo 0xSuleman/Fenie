@@ -2,6 +2,8 @@
 
 > **AI-powered multi-timeframe trading assistant for TradingView**
 
+> **Authorship status:** The repository's only published commit is authored by Usman Akbar. Until the project origin and individual contributions are confirmed, Fenie must be presented as a collaboration or maintained experiment—not as sole-authored work. See [ATTRIBUTION.md](ATTRIBUTION.md).
+
 Fenie is a Chrome Extension that automatically captures 4 timeframes (15m, 1H, 4H, 1D) from any TradingView chart and sends them to Google's Gemini AI for a complete trade analysis — including direction, entry/exit levels, DCA strategy, hedge setup, and live news sentiment.
 
 ![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)
